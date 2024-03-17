@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT;
 
 // Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
@@ -39,8 +39,8 @@ app.post('/contact', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'obedaminu303@gmail.com',
-      pass: 'bvhp pcoz qmbp aldt'
+      user:  process.env.EMAIL_USERNAME,
+      pass: process.env.SECRET_KEY
     }
   })
 
