@@ -1,18 +1,24 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-require('dotenv').config();
-const cors =require('cors')
+import express from 'express';
+import bodyParser from 'body-parser'
+import nodemailer from 'nodemailer'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT || 3002;
-app.use(cors())
+app.use(cors(
+  {
+    origin:[""],
+    methods:["GET"]
+  }
+))
 // Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/', (req, res) => {
-//     res.send("server running  ")
-// })
+app.get('/', (req, res) => {
+    res.status(200).json("server running")
+})
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', 'http://portfolio-site-flame-zeta.vercel.app')
 //     res.setHeader(
@@ -43,15 +49,15 @@ app.post('/contact', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'obedaminu303@gmail.com',
-      pass: 'bvhp pcoz qmbp aldt'
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.SECRET_KEY
     }
   })
 
   // Setup email data
   let mailOptions = {
-    from: user_email,
-    to: 'obedaminu303@gmail.com', // Receiver's email address
+    from: process.env.EMAIL_USERNAME,
+    to: 'ayoobed685@gmail.com', // Receiver's email address
     subject: 'Portfolio Contact Form Submission',
     html: `
             <p>Name: ${user_firstname} ${user_lastname}</p>
