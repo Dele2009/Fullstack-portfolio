@@ -2,25 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const cors =require('cors')
 
 const app = express();
 const PORT = process.env.PORT;
-
+app.use(cors())
 // Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://portfolio-site-flame-zeta.vercel.app')
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content, Content-Type, Authorization'
-    )
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE, PATCH, OPTIONS'
-    )
-    next()
-  })
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://portfolio-site-flame-zeta.vercel.app')
+//     res.setHeader(
+//       'Access-Control-Allow-Headers',
+//       'Origin, X-Requested-With, Content, Content-Type, Authorization'
+//     )
+//     res.setHeader(
+//       'Access-Control-Allow-Methods',
+//       'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+//     )
+//     next()
+//   })
 
 // POST endpoint for contact form submissions
 app.post('/contact', (req, res) => {
