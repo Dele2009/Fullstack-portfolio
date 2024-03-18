@@ -8,12 +8,7 @@ dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT || 3002;
-app.use(cors(
-  {
-    origin:["https://frontend-three-psi-29.vercel.app/#/contact_Me"],
-    methods:["GET"]
-  }
-))
+app.use(cors())
 // Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
