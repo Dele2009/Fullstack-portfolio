@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser'
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -9,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 app.use(cors(
   {
-    origin:[""],
+    origin:["https://frontend-three-psi-29.vercel.app/#/contact_Me"],
     methods:["GET"]
   }
 ))
