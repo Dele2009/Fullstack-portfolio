@@ -10,9 +10,9 @@ app.use(cors())
 // Middleware to parse JSON and URL-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', (req, res) => {
-    res.send("server running  ")
-})
+// app.use('/', (req, res) => {
+//     res.send("server running  ")
+// })
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', 'http://portfolio-site-flame-zeta.vercel.app')
 //     res.setHeader(
